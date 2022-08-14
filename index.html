@@ -10,7 +10,7 @@ Author URL: http://w3layouts.com
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Mix a Personal Category Bootstrap Responsive Website Template | Home :: W3layouts</title>
+  <title>Mohammed Rizwan</title>
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style-starter.css">
@@ -99,7 +99,7 @@ Author URL: http://w3layouts.com
             solutions to solve it. I always try my best to make good user interface with the best user experience.</p>
           <p>“Everyone knows that debugging is twice as hard as writing a program in the first place. So if you’re as clever as you can be when you write it, how will you ever debug it?”</p>
 
-          <a href="#URL" class="btn btn-outline-primary p-3">Download CV</a>
+          <a href="assets/images/Rizzz's Resume.pdf" download class="btn btn-outline-primary p-3">Download CV</a>
         </div>
       </div>
     </div>
@@ -371,12 +371,13 @@ Author URL: http://w3layouts.com
       <h3 class="global-title">Drop me a Message</h3>
       <div class="row">
         <div class="col-md-5 contact-form">
-          <form action="https://sendmail.w3layouts.com/submitForm" method="post">
-            <input type="text" class="form-control" name="w3lName" placeholder="Name" /><br />
-            <input type="email" class="form-control" name="w3lSender" placeholder="E-mail" /><br />
-            <input type="text" class="form-control" name="w3lSubject" placeholder="Subject" /><br />
-            <textarea class="form-control" name="w3lMessage" placeholder="Your Message" style="height:150px;"></textarea><br />
+          <form name="submit-to-google-sheet">
+            <input type="text"  name="Name" placeholder="Name" /><br /><br>
+            <input type="email"  name="E-mail" placeholder="E-mail" /><br /><br>
+            <input type="text"  name="Subject" placeholder="Subject" /><br /><br>
+            <textarea name="Message" placeholder="Your Message" style="height:150px;"></textarea><br /><br>
             <button class="btn btn-primary theme-button" type="submit">Send</button>
+            <span id="msg"></span>
           </form>
         </div>
         <div class="col-md-4 mt-md-0 mt-5 w3-contact-address">
@@ -514,7 +515,23 @@ Author URL: http://w3layouts.com
     });
   </script>
   <script src="https://kit.fontawesome.com/b6a9428b7e.js" crossorigin="anonymous"></script>
-
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzh6oRdveZgzrw1qoeNZFFBeD9oYgHQ5mQrVqnDq8jMkIuunADyrTgMNp6jKEOzWHNtuQ/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+          msg.innerHTML='Message sent Successfully'
+          setTimeout(function(){
+            msg.innerHTML=""
+          },3000)
+          form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 </body>
 
 </html>

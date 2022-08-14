@@ -11837,6 +11837,12 @@ div#small-dialog iframe {
 .w3l-contact .w3-contact-address a:hover {
   text-decoration: underline; }
 
+#msg{
+  margin-left: 1rem;
+  
+}
+
+
 /*-- quote --*/
 .w3l-grid-quote {
   text-align: center;
